@@ -1,0 +1,13 @@
+<ion-view view-title="{{ 'MENU_DASHBOARD' | translate }}">
+  <ion-content>
+	  <div class="card">
+	  <div class="item item-text-wrap text-center">
+	  <h1>{{ 'DASH_WELCOME' | translate }}, <span class="icon-left"><i class="icon ion-person"></i></span> {{getUsername()}}</h1>
+	  <p>{{ 'DASH_CONNECTED' | translate }} {{getHost()}}</p>
+	  </div>
+    <div class="list">
+    	<ion-radio ng-model="choice" ng-value="true" ng-click="switchLanguage('en')">{{ 'LANG_en' | translate }}</ion-radio>
+      <ion-radio ng-model="choice" ng-value="false" ng-click="switchLanguage('es')">{{ 'LANG_es' | translate }}</ion-radio>
+    </div>
+  </ion-content>
+</ion-view>

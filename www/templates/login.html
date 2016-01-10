@@ -1,0 +1,32 @@
+<ion-modal-view ng-controller="AppCtrl">
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">{{ 'LOGIN_TITLE' | translate }}</h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">{{ 'LOGIN_HOST_LABEL' | translate }}</span>
+        <input type="text" placeholder="demo.openmrs.org/openmrs/" ng-model="login.host">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">{{ 'LOGIN_USERNAME_LABEL' | translate }}</span>
+        <input type="text" ng-model="login.username">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">{{ 'LOGIN_PASSWORD_LABEL' | translate }}</span>
+        <input type="password" ng-model="login.password">
+      </label>
+      <center>
+      <div class="list list-inset">      
+        <ion-radio ng-model="choice" ng-value="true" ng-click="switchLanguage('en')" style="display:inline-block">{{ 'LANG_en' | translate }}</ion-radio>
+        <ion-radio ng-model="choice" ng-value="false" ng-click="switchLanguage('es')" style="display:inline-block">{{ 'LANG_es' | translate }}</ion-radio>
+      </div>
+      </center>
+    </div>
+    <center>
+    <button class="button ion-chevron-right button-positive" ng-click="login(login.host, login.username, login.password)"></button>
+    <br /> <br />
+    <ion-spinner icon="spiral" ng-show="loading"></ion-spinner>
+    </center>
+  </ion-content>
+</ion-modal-view>

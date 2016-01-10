@@ -1,0 +1,23 @@
+<ion-view view-title="{{ 'SEARCHPATIENTS_TITLE' | translate }}">
+	<ion-content>
+		<div class="list">
+		  <label class="item item-input">
+		    <i class="icon ion-search placeholder-icon"></i>
+		    <input type="search" placeholder="{{ 'SEARCHPATIENTS_BAR' | translate }}" ng-init="search()" ng-model="searchpatients.query" ng-model-options="{debounce: 200}">
+		  </label>
+			<center><ion-spinner icon="dots" ng-if="searchpatients.searching"> </ion-spinner></center>
+		  <a class="item item-icon-left" ng-repeat="patient in searchpatients.patientList" ng-href="#/app/patient/{{patient.uuid}}">
+		  	<div ng-if="patient.person.gender==='M'">
+			  	<i class="icon ion-male positive"></i>
+			  	<ion-badge class="badge badge-positive">{{ 'SEARCHPATIENTS_AGE' | translate }} {{patient.person.age}}</ion-badge>
+		  	</div>
+		  	<div ng-if="patient.person.gender==='F'">
+			  	<i class="icon ion-female royal"></i>
+			  	<ion-badge class="badge badge-royal">{{ 'SEARCHPATIENTS_AGE' | translate }} {{patient.person.age}}</ion-badge>
+		  	</div>
+		  	<h2>{{patient.display}}</h2>
+		  </a>
+		</div>
+		<br /> <br />
+	</ion-content>
+</ion-view>
