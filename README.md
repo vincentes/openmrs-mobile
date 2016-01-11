@@ -18,5 +18,6 @@ Change directory to the cloned folder
     $ cd OpenMRS-Mobile
 
 Running ionic
+
     $ ionic serve
 This will open a Chrome window with the app running. Make sure you have Allow-Control-Allow-Origin plugin installed and enabled. Without it, Chrome won't be able to make api calls to the OpenMRS host server.
