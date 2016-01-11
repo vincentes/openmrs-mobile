@@ -21,3 +21,34 @@ Running ionic
 
     $ ionic serve
 This will open a Chrome window with the app running. Make sure you have Allow-Control-Allow-Origin plugin installed and enabled. Without it, Chrome won't be able to make api calls to the OpenMRS host server.
+
+# iOS installation
+
+You will need:
+  1. OS X.
+  2. [Ionic](http://ionicframework.com/docs/guide/installation.html)
+
+Clone the repository
+
+    $ git clone https://github.com/Vincentes/OpenMRS-Mobile.git
+
+Change directory to the cloned folder
+
+    $ cd OpenMRS-Mobile
+
+
+Add iOS platform support to the project
+
+    $ ionic platform add ios
+    
+Build the app
+
+    $ ionic build ios
+    
+Plug an iOS device to your computer and run the app
+
+    $ ionic run ios
+    
+Or alternatively, you can emulate the app
+
+    $ ionic emulate ios
