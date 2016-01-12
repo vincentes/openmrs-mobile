@@ -52,3 +52,7 @@ Plug an iOS device to your computer and run the app
 Or alternatively, you can emulate the app
 
     $ ionic emulate ios
+
+# Installing on Windows Phone
+
+Installing an Ionic app on Windows Phone is a little more complicated, because Ionic doesn't support it. Don't worry, you can still install it. [This](http://www.badpenguin.org/how-to-make-your-ionic-cordova-app-to-run-under-windows-phone-8-1-and-desktop) website explains step by step how to install an Ionic app on Windows Phone. Every user won't have to go through this, we will build the project ourselves once it's ready to deploy.
