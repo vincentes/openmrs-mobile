@@ -22,6 +22,38 @@ Running ionic
     $ ionic serve
 This will open a Chrome window with the app running. Make sure you have Allow-Control-Allow-Origin plugin installed and enabled. Without it, Chrome won't be able to make api calls to the OpenMRS host server.
 
+# Installing on Android
+
+You will need:
+  1. [Android SDK (with lastest API)](http://developer.android.com/sdk/installing/index.html?pkg=tools)
+  2. [Ionic](http://ionicframework.com/docs/guide/installation.html)
+  3. (Optional) Gennymotion or any other emulator
+
+Clone the repository
+
+    $ git clone https://github.com/Vincentes/OpenMRS-Mobile.git
+
+Change directory to the cloned folder
+
+    $ cd OpenMRS-Mobile
+
+
+Add Android platform support to the project
+
+    $ ionic platform add android
+    
+Build the app
+
+    $ ionic build android
+    
+Plug an Android device to your computer and run the app
+
+    $ ionic run android
+    
+Or alternatively, you can emulate the app
+
+    $ ionic emulate android
+    
 # Installing on iOS
 
 You will need:
