@@ -68,7 +68,6 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
 
     // Búsqueda de pacientes
     SEARCHPATIENTS_TITLE: 'Pacientes',
-    SEARCHPATIENTS_BAR: 'Buscar',
     SEARCHPATIENTS_AGE: 'Edad:',
 
     // Detalles de pacientes
@@ -125,7 +124,6 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
 
     // Search patients
     SEARCHPATIENTS_TITLE: 'Patients',
-    SEARCHPATIENTS_BAR: 'Search',
     SEARCHPATIENTS_AGE: 'Aged',
 
     // Patient details
