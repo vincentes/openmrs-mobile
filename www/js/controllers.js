@@ -25,9 +25,6 @@ angular.module('openmrs.controllers', ['openmrs.services'])
 .controller('LoginCtrl', function($scope, $state, $translate, $ionicPopup, RestService, AuthService, TranslationService) {
 
   $scope.login = function(host, username, password) {
-    console.log('Authenticating...');
-
-
     if(!host) {
       host = 'http://demo.openmrs.org/openmrs/'
     }
@@ -69,7 +66,6 @@ angular.module('openmrs.controllers', ['openmrs.services'])
             template: TranslationService.login_error_userpass
           });
         }
-        console.log('Authenticated: ' + result.authenticated);
         $scope.loading = false;
       });
     } else {
@@ -97,8 +93,8 @@ angular.module('openmrs.controllers', ['openmrs.services'])
 .controller('PatientsCtrl', function($scope, $state, SearchService) {
   // Should work without initializing.. for some reason it doesn't.
   $scope.searchpatients = [];
-
   $scope.searchpatients.query = '';
+
   $scope.search = function() {
     var search = function(res) {
       $scope.searchpatients.patientList = res;

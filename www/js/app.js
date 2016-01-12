@@ -26,8 +26,6 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
   $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
       $rootScope.previousState = from.name;
       $rootScope.currentState = to.name;
-      console.log('Changed from state:' + $rootScope.previousState);
-      console.log('Current state:' + $rootScope.currentState);
   });
 })
 
@@ -159,7 +157,6 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
       TranslationService.setLangToStored();
 
       var loggedIn = AuthService.isLoggedIn();
-      console.log(loggedIn);
       if(loggedIn) {
         $state.go('app.dashboard');
       }
@@ -175,7 +172,6 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
       TranslationService.setLangToStored();
 
       var loggedIn = AuthService.isLoggedIn();
-      console.log(loggedIn);
       if(!loggedIn) {
         $state.go('login');
       }

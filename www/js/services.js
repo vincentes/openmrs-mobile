@@ -10,8 +10,6 @@ angular.module('openmrs.services', [])
       async = opts['async'];
     if(opts['cache']) 
       cache = opts['cache'];
-    console.log(async);
-    console.log(cache);
     $.ajax({
       beforeSend: function(xhr) {
         if(opts['username']) {
