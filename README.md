@@ -1,7 +1,7 @@
 # OpenMRS-Mobile
 The is the repository for the *universal* OpenMRS Mobile app. You can clone this repository and build it to Android, iOS, and Windows Phone.
 
-# Browser installation
+# Installing on Chrome
 Installing OpenMRS-Mobile for the browser is easy.
 
 You will need:
@@ -22,7 +22,7 @@ Running ionic
     $ ionic serve
 This will open a Chrome window with the app running. Make sure you have Allow-Control-Allow-Origin plugin installed and enabled. Without it, Chrome won't be able to make api calls to the OpenMRS host server.
 
-# iOS installation
+# Installing on iOS
 
 You will need:
   1. OS X.
