@@ -1,6 +1,7 @@
 angular.module('openmrs.controllers', ['openmrs.services'])
 
-.controller('AppCtrl', function($scope, $state, $translate, $rootScope, AuthService, RestService) {
+.controller('AppCtrl', function($scope, $state, $translate, $rootScope, AuthService, TranslationService) {
+
   $scope.curlang = $translate.use();
 
   $scope.getUsername = function() {
@@ -16,22 +17,12 @@ angular.module('openmrs.controllers', ['openmrs.services'])
   }
 
   $scope.switchLanguage = function(lang) {
-    $translate.use(lang);
-    $scope.curlang = lang;
-    AuthService.setLang($scope.curlang);
+    TranslationService.setLang(lang);
   }
+
 })
 
-.controller('LoginCtrl', function($scope, $state, $translate, $ionicPopup, RestService, AuthService) {
-  $translate(['LOGIN_ERROR_TITLE', 'LOGIN_ERROR_USERANDPASS_MESSAGE', 'LOGIN_ERROR_HOST_MESSAGE', 'LOGIN_ERROR_SESSION_MESSAGE', 'LOGOUT_CONFIRM_TITLE', 'LOGOUT_CONFIRM_MESSAGE', 'LOGOUT_CONFIRM_CANCEL']).then(function (translations) {
-    $scope.em_title = translations.LOGIN_ERROR_TITLE;
-    $scope.em_userandpass = translations.LOGIN_ERROR_USERANDPASS_MESSAGE;
-    $scope.em_host = translations.LOGIN_ERROR_HOST_MESSAGE;
-    $scope.em_session = translations.LOGIN_ERROR_SESSION_MESSAGE;
-    $scope.cm_title = translations.LOGOUT_CONFIRM_TITLE;
-    $scope.cm_logout = translations.LOGOUT_CONFIRM_MESSAGE;
-    $scope.cb_cancel = translations.LOGOUT_CONFIRM_BUTTON;
-  });
+.controller('LoginCtrl', function($scope, $state, $translate, $ionicPopup, RestService, AuthService, TranslationService) {
 
   $scope.login = function(host, username, password) {
     console.log('Authenticating...');
@@ -48,8 +39,8 @@ angular.module('openmrs.controllers', ['openmrs.services'])
     $scope.loading = true;
     if(AuthService.isLoggedIn()) {
       $ionicPopup.alert({
-        title: $scope.em_title + ' ' + host,
-        template: $scope.em_session
+        title: TranslationService.login_error_title + ' ' + host,
+        template: TranslationService.login_error_session
       });
       $scope.loading = false;
     }
@@ -57,8 +48,8 @@ angular.module('openmrs.controllers', ['openmrs.services'])
     RestService.verifyApi(host, function(passed) {
       if(!passed) {
         $ionicPopup.alert({
-          title: $scope.em_title + ' ' + host,
-          template: $scope.em_host
+          title: TranslationService.login_error_title + ' ' + host,
+          template: TranslationService.login_error_host
         });
       }
       $scope.loading = false;
@@ -74,8 +65,8 @@ angular.module('openmrs.controllers', ['openmrs.services'])
           $state.transitionTo('app.dashboard');
         } else {
           $ionicPopup.alert({
-            title:  $scope.em_title + ' ' + host,
-            template: $scope.em_userandpass
+            title:  TranslationService.login_error_title + ' ' + host,
+            template: TranslationService.login_error_userpass
           });
         }
         console.log('Authenticated: ' + result.authenticated);
@@ -89,8 +80,9 @@ angular.module('openmrs.controllers', ['openmrs.services'])
 
   $scope.logout = function() {
     var logout = $ionicPopup.confirm({
-     title: $scope.cm_title,
-     template: $scope.cm_logout
+     title: TranslationService.logout_confirm_title,
+     template: TranslationService.logout_confirm_message,
+     cancelText: TranslationService.logout_confirm_cancel
     });
     
     logout.then(function(result) {

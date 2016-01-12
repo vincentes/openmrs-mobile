@@ -80,6 +80,38 @@ angular.module('openmrs.services', [])
   }
 })
 
+.service('TranslationService', function($translate, AuthService) {
+  this.curlang = $translate.use();
+
+  this.setLang = function(lang) {
+    $translate.use(lang);
+    this.curlang = lang;
+    AuthService.setLang(this.curlang);
+    this.updateCtrlTranslations();
+  }
+
+  this.getLang = function() {
+    return this.curlang;
+  }
+
+  this.setLangToStored = function() {
+    var lang = AuthService.getLang();
+    if(lang) {
+      this.setLang(lang);
+    }
+  }
+
+  this.updateCtrlTranslations = function() {
+    this.login_error_title = $translate.instant('LOGIN_ERROR_TITLE');
+    this.login_error_userpass = $translate.instant('LOGIN_ERROR_WRONGUSERPASSWORD')
+    this.login_error_host = $translate.instant('LOGIN_ERROR_WRONGHOST');
+    this.login_error_session = $translate.instant('LOGIN_ERROR_SESSION');
+    this.logout_confirm_title = $translate.instant('LOGOUT_CONFIRM_TITLE');
+    this.logout_confirm_message = $translate.instant('LOGOUT_CONFIRM_MESSAGE');
+    this.logout_confirm_cancel = $translate.instant('CANCEL');
+  }
+})
+
 .factory('AuthService', function () {
   if (window.localStorage['openmrs-session']) {
     var _session = JSON.parse(window.localStorage['openmrs-session']);

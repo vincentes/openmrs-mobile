@@ -52,9 +52,9 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
 
     // Inicio de sesión: errores
     LOGIN_ERROR_TITLE:'Error al iniciar sesión en el servidor',
-    LOGIN_ERROR_USERANDPASS_MESSAGE: 'Usuario o cortaseña inválida.',
-    LOGIN_ERROR_HOST_MESSAGE: 'Servidor inválido. ¿Haz incluido el directorio /openmrs/ del servidor?',
-    LOGIN_ERROR_SESSION_MESSAGE: '¡Usted ya está en una sesión! Si esto es incorrecto, intente reiniciar su navegador.',
+    LOGIN_ERROR_WRONGUSERPASSWORD: 'Usuario o cortaseña inválida.',
+    LOGIN_ERROR_WRONGHOST: 'Servidor inválido. ¿Haz incluido el directorio /openmrs/ del servidor?',
+    LOGIN_ERROR_SESSION: '¡Usted ya está en una sesión! Si esto es incorrecto, intente reiniciar su navegador.',
 
     // Finalización de la sesión
     LOGOUT_CONFIRM_TITLE:'Cerrando sesión',
@@ -88,8 +88,9 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
     PROVINCE: 'Provincia',
     CITY: 'Ciudad',
     ADDRESS: 'Dirección',
-    POSTAL: 'Código postal'
-
+    POSTAL: 'Código postal',
+    CANCEL: 'Cancelar',
+    ACTION_SEARCH: 'Buscar'
   }).translations('en', {
     // Languages
     LANG_es: 'Spanish',
@@ -110,14 +111,13 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
 
     // Logging in: errors
     LOGIN_ERROR_TITLE:'Error logging in to',
-    LOGIN_ERROR_USERANDPASS_MESSAGE: 'Invalid username or password.',
-    LOGIN_ERROR_HOST_MESSAGE: 'Invalid host. Have you include?',
-    LOGIN_ERROR_SESSION_MESSAGE: 'You are already logged in! If this is incorrect, try restarting your browser.',
+    LOGIN_ERROR_WRONGUSERPASSWORD: 'Invalid username or password.',
+    LOGIN_ERROR_WRONGHOST: 'Invalid host. Have you include?',
+    LOGIN_ERROR_SESSION: 'You are already logged in! If this is incorrect, try restarting your browser.',
 
     // Logging out
     LOGOUT_CONFIRM_TITLE:'Logging out',
     LOGOUT_CONFIRM_MESSAGE: 'Are you sure you want to log out?.',
-    LOGOUT_CONFIRM_CANCEL: 'Cancel',
 
     // Dashboard
     DASH_WELCOME: 'Welcome',
@@ -145,7 +145,9 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
     PROVINCE: 'Province',
     CITY: 'City',
     ADDRESS: 'Address',
-    POSTAL: 'Postal'
+    POSTAL: 'Postal',
+    CANCEL: 'Cancel',
+    ACTION_SEARCH: 'Search'
   })
   $translateProvider.preferredLanguage('en');
 
@@ -155,12 +157,8 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl',
-    onEnter: function($state, $translate, AuthService) {
-      var lang = AuthService.getLang();
-      if(lang) {
-        console.log('Switched to language: ' + lang + ' from ' + $translateProvider.use(lang));
-        $translateProvider.use(lang);
-      }
+    onEnter: function($state, AuthService, TranslationService) {
+      TranslationService.setLangToStored();
 
       var loggedIn = AuthService.isLoggedIn();
       console.log(loggedIn);
@@ -175,12 +173,8 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
-    onEnter: function($state, $translate, AuthService) {
-      var lang = AuthService.getLang();
-      if(lang) {
-        console.log('Switched to language: ' + lang);
-        $translateProvider.use(lang);
-      }
+    onEnter: function($state, $translate, AuthService, TranslationService) {
+      TranslationService.setLangToStored();
 
       var loggedIn = AuthService.isLoggedIn();
       console.log(loggedIn);
