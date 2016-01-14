@@ -1,4 +1,5 @@
-<ion-view view-title="{{ patient.person.display }}">
+<ion-view>
+<ion-nav-title>{{ patient.person.display }}</ion-nav-title>
 	<ion-content>
 	<div class="list text-center " ng-if="patient.person.dead">
 		<div class="item item-light">{{ 'PATIENT_EXPIRED' | translate }}</div>
