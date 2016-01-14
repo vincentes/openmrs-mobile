@@ -1,8 +1,14 @@
 # OpenMRS-Mobile
-The is the repository for the *universal* OpenMRS Mobile app. You can clone this repository and build it to Android, iOS, and Windows Phone.
+The is the repository for the *universal* OpenMRS Mobile app. The objective of this project is to make OpenMRS available to all mobile platforms using a single codebase to reduce maintainence time and increase efficiency and consistency. You can clone this repository and build it to Android, iOS, and Windows Phone.
+
+# Features
+- Search and view patients
+- Local stored information for convenience
+- Language support using angular-translate
+- Spanish and english languages
 
 # Installing on Chrome
-Installing OpenMRS-Mobile for the browser is easy.
+You can test OpenMRS Mobile on the browser but please test it on a phone or emulator before comitting.
 
 You will need:
   1. [Ionic](http://ionicframework.com/docs/guide/installation.html)
