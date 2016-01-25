@@ -44,8 +44,8 @@
 			<p ng-if="!patient.person.addresses[0].stateProvince">No state or province provided.</p>
 		</ion-item>
 		<ion-item class="item-icon-left"> <span class="item-positive"><i class="icon ion-earth"></i>{{ 'CITY' | translate }}
-			<p ng-if="patient.person.addressses[0].cityVillage">{{ patient.person.addresses[0].cityVillage }}</p>
-			<p ng-if="!patient.person.addressses[0].cityVillage">No city provided.</p></span>
+			<p ng-if="patient.person.addresses[0].cityVillage">{{ patient.person.addresses[0].cityVillage }}</p>
+			<p ng-if="!patient.person.addresses[0].cityVillage">No city provided.</p></span>
 		</ion-item>
 		<ion-item class="item-icon-left"> <i class="icon ion-location assertive"></i>{{ 'ADDRESS' | translate }}
 			<p ng-if="patient.person.addresses[0].address1">{{ patient.person.addresses[0].address1 }}</p>
