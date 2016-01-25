@@ -121,9 +121,11 @@ angular.module('openmrs.controllers', ['openmrs.services'])
 .controller('PatientCtrl', function($scope, $stateParams, PatientService) {
   $scope.patient = [];
 
+  $scope.loading = true;
   PatientService.getPatient($stateParams.uuid, function(res) {
     res.person.birthdate = new Date(res.person.birthdate).toString();
     $scope.patient = res;
+    $scope.loading = false;
     $scope.$apply();
   });
 })

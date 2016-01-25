@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-positive">
+    <ion-nav-bar class="bar-balanced">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -13,19 +13,19 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-positive">
+    <ion-header-bar class="bar-balanced">
       <h1 class="title">{{ 'MENU_TITLE' | translate }}</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list ng-controller="LoginCtrl">
         <ion-item menu-close class="item-icon-left" ng-href="#/app/dashboard">
-          <i class='icon ion-ionic positive'></i> {{ 'MENU_DASHBOARD' | translate }}
+          <i class='icon ion-ionic balanced'></i> {{ 'MENU_DASHBOARD' | translate }}
         </ion-item>
         <ion-item menu-close class="item-icon-left" ng-href="#/app/searchpatients">
-          <i class='icon ion-ios-search positive'></i> {{ 'MENU_SEARCHPATIENTS' | translate }}
+          <i class='icon ion-ios-search balanced'></i> {{ 'MENU_SEARCHPATIENTS' | translate }}
         </ion-item>
         <ion-item menu-close class="item-icon-left" ng-click="logout()">
-          <i class='icon ion-ios-paperplane positive'></i> {{ 'MENU_LOGOUT' | translate }}
+          <i class='icon ion-ios-paperplane balanced'></i> {{ 'MENU_LOGOUT' | translate }}
         </ion-item>
       </ion-list>
     </ion-content>

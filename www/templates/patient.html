@@ -1,43 +1,61 @@
 <ion-view>
-<ion-nav-title>{{ patient.person.display }}</ion-nav-title>
-	<ion-content>
-	<div class="list text-center " ng-if="patient.person.dead">
+<ion-nav-title><span ng-show="!loading">{{ patient.person.display }}</span><span ng-show="loading">Loading...</span></ion-nav-title>
+<ion-content>
+	<center><ion-spinner icon="dots" ng-show="loading"></ion-spinner></center>
+	<div ng-show="!loading">
+	<div class="list text-center " ng-show="patient.person.dead">
 		<div class="item item-light">{{ 'PATIENT_EXPIRED' | translate }}</div>
 	</div>
 	<div class="card">
-		<div class="item item-divider">{{ 'BASIC' | translate }}</div>
+		<div class="item item-divider item-balanced">{{ 'BASIC' | translate }}</div>
 		<ion-item class="item-icon-left">
 			<i class="icon ion-person"></i>ID<p>{{ patient.identifiers[0].identifier }}</p>
 		</ion-item>
-		<ion-item class="item-icon-left" ng-if="!patient.person.birthdateEstimated">
+		<ion-item class="item-icon-left" ng-show="!patient.person.birthdateEstimated">
 			<i class="icon ion-person"></i>{{ 'AGE' | translate }}<p>{{ patient.person.age }}</p>
 		</ion-item>
-		<ion-item class="item-icon-left" ng-if="patient.person.birthdateEstimated">
+		<ion-item class="item-icon-left" ng-show="patient.person.birthdateEstimated">
 			<i class="icon ion-person"></i>{{ 'AGE' | translate }} ({{ 'ESTIMATED' | translate | lowercase}})<p>{{ patient.person.age }}</p>
 		</ion-item>
-		<ion-item class="item-icon-left" ng-if="!patient.person.birthdateEstimated">
+		<ion-item class="item-icon-left" ng-show="!patient.person.birthdateEstimated">
 			<i class="icon ion-person"></i>{{ 'BIRTHDATE' | translate}}<p>{{ patient.person.birthdate }}</p>
 		</ion-item>
-		<ion-item class="item-icon-left" ng-if="patient.person.birthdateEstimated">
+		<ion-item class="item-icon-left" ng-show="patient.person.birthdateEstimated">
 			<i class="icon ion-person"></i>{{ 'BIRTHDATE' | translate}} ({{ 'ESTIMATED' | translate}})<p>{{ patient.person.birthdate }}</p>
 		</ion-item>
 		<ion-item class="item-icon-left">
-		<div ng-if="patient.person.gender==='M'">
+		<div ng-show="patient.person.gender==='M'">
 			<i class="icon ion-male positive"></i>{{ 'GENDER' | translate}}<p>{{ 'MALE' | translate }}</p>
 		</div>
-		<div ng-if="patient.person.gender==='F'">
+		<div ng-show="patient.person.gender==='F'">
 			<i class="icon ion-male royal"></i>{{ 'GENDER' | translate}}<p>{{ 'FEMALE' | translate }}</p>
 		</div>
 		</ion-item>
 	</div>
 
 	<div class="card">
-		<div class="item item-divider">{{ 'LOCATION' | translate }}</div>
-		<ion-item class="item-icon-left"> <i class="icon ion-earth"></i>{{ 'COUNTRY' | translate }}<p>{{ patient.person.addresses[0].country }}</p></ion-item>
-		<ion-item class="item-icon-left"> <i class="icon ion-earth"></i>{{ 'STATE' | translate }}/{{ 'PROVINCE' | translate }}<p>{{ patient.person.addresses[0].stateProvince }}</p></ion-item>
-		<ion-item class="item-icon-left"> <i class="icon ion-earth"></i>{{ 'CITY' | translate }}<p>{{ patient.person.addresses[0].cityVillage }}</p></ion-item>
-		<ion-item class="item-icon-left"> <i class="icon ion-location assertive"></i>{{ 'ADDRESS' | translate }}<p>{{ patient.person.addresses[0].address1 }}</p></ion-item>
-		<ion-item class="item-icon-left"> <i class="icon ion-ios-home"></i>{{ 'POSTAL' | translate }}<p>{{ patient.person.addresses[0].postalCode }}</p></ion-item>
+		<div class="item item-divider item-balanced">{{ 'LOCATION' | translate }}</div>
+		<ion-item class="item-icon-left"> <i class="icon ion-earth"></i>{{ 'COUNTRY' | translate }}
+			<p ng-if="patient.person.addresses[0].country">{{ patient.person.addresses[0].country }}</p>
+			<p ng-if="!patient.person.addresses[0].country">No country provided.</p>
+		</ion-item>
+		<ion-item class="item-icon-left"> <i class="icon ion-earth"></i>{{ 'STATE' | translate }}/{{ 'PROVINCE' | translate }}
+			<p ng-if="patient.person.addresses[0].stateProvince">{{ patient.person.addresses[0].stateProvince }}</p>
+			<p ng-if="!patient.person.addresses[0].stateProvince">No state or province provided.</p>
+		</ion-item>
+		<ion-item class="item-icon-left"> <span class="item-positive"><i class="icon ion-earth"></i>{{ 'CITY' | translate }}
+			<p ng-if="patient.person.addressses[0].cityVillage">{{ patient.person.addresses[0].cityVillage }}</p>
+			<p ng-if="!patient.person.addressses[0].cityVillage">No city provided.</p></span>
+		</ion-item>
+		<ion-item class="item-icon-left"> <i class="icon ion-location assertive"></i>{{ 'ADDRESS' | translate }}
+			<p ng-if="patient.person.addresses[0].address1">{{ patient.person.addresses[0].address1 }}</p>
+			<p ng-if="!patient.person.addresses[0].address1">No address provided.</p>
+		</ion-item>
+		<ion-item class="item-icon-left"> <i class="icon ion-ios-home"></i>{{ 'POSTAL' | translate }}
+			<p ng-if="patient.person.addresses[0].postalCode">{{ patient.person.addresses[0].postalCode }}</p>
+			<p ng-if="!patient.person.addresses[0].postalCode">No postal code provided.</p>
+		</ion-item>
 	</div>
-	</ion-content>
+	</div>
+</ion-content>
 </ion-view>

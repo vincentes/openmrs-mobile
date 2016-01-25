@@ -36,14 +36,14 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
     LANG_en : 'Inglés',
 
     // Menú
-    MENU_TITLE: 'Acciones',
+    MENU_TITLE: 'Menú',
     MENU_DASHBOARD: 'Inicio',
     MENU_SEARCHPATIENTS : 'Búsqueda de pacientes',
     MENU_REGISTERPATIENT : 'Registrar un paciente',
     MENU_LOGOUT: 'Cerrar sesión',
 
     // Inicio de sesión
-    LOGIN_TITLE : 'Iniciar sesión',
+    LOGIN_TITLE : 'Sesión de OpenMRS',
     LOGIN_HOST_LABEL: 'Servidor',
     LOGIN_USERNAME_LABEL: 'Usuario',
     LOGIN_PASSWORD_LABEL: 'Cortaseña',
@@ -94,14 +94,14 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
     LANG_en: 'English',
 
     // Menu
-    MENU_TITLE: 'Actions',
+    MENU_TITLE: 'Menu',
     MENU_DASHBOARD : 'Dashboard',
     MENU_SEARCHPATIENTS : 'Search patients',
     MENU_REGISTERPATIENT : 'Register a patient',
     MENU_LOGOUT: 'Logout',
 
     // Logging in
-    LOGIN_TITLE: 'Login',
+    LOGIN_TITLE: 'OpenMRS Login',
     LOGIN_HOST_LABEL: 'Host',
     LOGIN_USERNAME_LABEL: 'Username',
     LOGIN_PASSWORD_LABEL: 'Password',
