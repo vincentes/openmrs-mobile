@@ -95,25 +95,28 @@ angular.module('openmrs.controllers', ['openmrs.services'])
   $scope.searchpatients = [];
   $scope.searchpatients.query = '';
 
-  $scope.search = function() {
-    var search = function(res) {
-      $scope.searchpatients.patientList = res;
-      $scope.searchpatients.searching = false;
-      $scope.$apply();
-    }
 
-    $scope.searchpatients.searching = true;
-    if($scope.searchpatients.query) {
-      SearchService.patients($scope.searchpatients.query, search);
-    } else {
-      $scope.searchpatients.patientList = [];
-      $scope.searchpatients.searching = false;
-    }
+  $scope.searchpatients.searching = true;
+  SearchService.patientsAll(function(res) {
+    $scope.searchpatients.searching = false;
+    $scope.searchpatients.patientList = res;
+    $scope.$apply();
+  });
+
+  var search = function(res) {
+    $scope.searchpatients.patientList = res;
+    $scope.searchpatients.searching = false;
+    $scope.$apply();
   }
 
   $scope.$watch('searchpatients.query', function(nVal, oVal) {
     if (nVal !== oVal) {
-      $scope.search();
+      $scope.searchpatients.searching = true;
+      if(!$scope.searchpatients.query) {
+        SearchService.patientsAll(search);
+      } else {
+        SearchService.patients($scope.searchpatients.query, search);
+      }
     }
   });
 })

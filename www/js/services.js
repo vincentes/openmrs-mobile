@@ -62,7 +62,7 @@ angular.module('openmrs.services', [])
 
   // Buggy. Does not return ALL patients.
   this.patientsAll = function(handle) {
-    RestService.call(AuthService.getHost(), 'patient?lastviewed', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword(), 'cache' : true}, 
+    RestService.call(AuthService.getHost(), 'patient?lastviewed&v=full', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword(), 'cache' : true}, 
       function(res) {
         handle(res.results);
     });
