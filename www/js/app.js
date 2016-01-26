@@ -198,7 +198,7 @@ angular.module('openmrs', ['ionic', 'openmrs.controllers', 'openmrs.services', '
       }
     })
 
-  .state('app.single', {
+  .state('app.patient', {
     url: '/patient/:uuid',
     views: {
       'menuContent': {
