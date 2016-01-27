@@ -50,21 +50,20 @@ angular.module('openmrs.services', [])
     });
   };
 
-  this.verifyApi = function(host, handle) {
+  this.isHostValid = function(host, handle) {
     CallService.call(host, 'session', {}, function(res) {
       handle(res.passed);
     });
   }
 
-  this.patients = function(query, handle) {
+  this.getPatients = function(query, handle) {
     CallService.call(AuthService.getHost(), 'patient?q=' + query + '&v=default', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword()}, 
       function(res) {
         handle(res.results);
     });
   }
 
-  // Buggy. Does not return ALL patients.
-  this.patientsAll = function(handle) {
+  this.getLastViewedPatients = function(handle) {
     CallService.call(AuthService.getHost(), 'patient?lastviewed&v=full', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword(), 'cache' : true}, 
       function(res) {
         handle(res.results);

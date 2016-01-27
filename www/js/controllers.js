@@ -42,7 +42,7 @@ angular.module('openmrs.controllers', ['openmrs.services'])
       $scope.loading = false;
     }
 
-    ApiService.verifyApi(host, function(passed) {
+    ApiService.isHostValid(host, function(passed) {
       if(!passed) {
         $ionicPopup.alert({
           title: TranslationService.login_error_title + ' ' + host,
@@ -97,7 +97,7 @@ angular.module('openmrs.controllers', ['openmrs.services'])
 
 
   $scope.searchpatients.searching = true;
-  ApiService.patientsAll(function(res) {
+  ApiService.getLastViewedPatients(function(res) {
     $scope.searchpatients.searching = false;
     $scope.searchpatients.patientList = res;
     $scope.$apply();
@@ -113,9 +113,9 @@ angular.module('openmrs.controllers', ['openmrs.services'])
     if (nVal !== oVal) {
       $scope.searchpatients.searching = true;
       if(!$scope.searchpatients.query) {
-        ApiService.patientsAll(search);
+        ApiService.getLastViewedPatients(search);
       } else {
-        ApiService.patients($scope.searchpatients.query, search);
+        ApiService.getPatients($scope.searchpatients.query, search);
       }
     }
   });
