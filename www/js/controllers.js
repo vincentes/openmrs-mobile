@@ -22,7 +22,7 @@ angular.module('openmrs.controllers', ['openmrs.services'])
 
 })
 
-.controller('LoginCtrl', function($scope, $state, $translate, $ionicPopup, RestService, AuthService, TranslationService) {
+.controller('LoginCtrl', function($scope, $state, $translate, $ionicPopup, ApiService, AuthService, TranslationService) {
 
   $scope.login = function(host, username, password) {
     if(!host) {
@@ -42,7 +42,7 @@ angular.module('openmrs.controllers', ['openmrs.services'])
       $scope.loading = false;
     }
 
-    RestService.verifyApi(host, function(passed) {
+    ApiService.verifyApi(host, function(passed) {
       if(!passed) {
         $ionicPopup.alert({
           title: TranslationService.login_error_title + ' ' + host,
@@ -53,7 +53,7 @@ angular.module('openmrs.controllers', ['openmrs.services'])
     });
 
     if(username && password) {
-      RestService.authenticate(host, username, password, function(result) {
+      ApiService.authenticate(host, username, password, function(result) {
         if(result.authenticated) {
           AuthService.setUsername(username);
           AuthService.setHost(host);
@@ -90,14 +90,14 @@ angular.module('openmrs.controllers', ['openmrs.services'])
   }
 })
 
-.controller('PatientsCtrl', function($scope, $state, SearchService) {
+.controller('PatientsCtrl', function($scope, $state, ApiService) {
   // Should work without initializing.. for some reason it doesn't.
   $scope.searchpatients = [];
   $scope.searchpatients.query = '';
 
 
   $scope.searchpatients.searching = true;
-  SearchService.patientsAll(function(res) {
+  ApiService.patientsAll(function(res) {
     $scope.searchpatients.searching = false;
     $scope.searchpatients.patientList = res;
     $scope.$apply();
@@ -113,24 +113,28 @@ angular.module('openmrs.controllers', ['openmrs.services'])
     if (nVal !== oVal) {
       $scope.searchpatients.searching = true;
       if(!$scope.searchpatients.query) {
-        SearchService.patientsAll(search);
+        ApiService.patientsAll(search);
       } else {
-        SearchService.patients($scope.searchpatients.query, search);
+        ApiService.patients($scope.searchpatients.query, search);
       }
     }
   });
 })
 
-.controller('PatientCtrl', function($scope, $stateParams, PatientService) {
+.controller('PatientCtrl', function($scope, $stateParams, ApiService) {
   $scope.patient = [];
 
   $scope.loading = true;
-  PatientService.getPatient($stateParams.uuid, function(res) {
+  ApiService.getPatient($stateParams.uuid, function(res) {
     res.person.birthdate = new Date(res.person.birthdate).toString();
     $scope.patient = res;
     $scope.loading = false;
     $scope.$apply();
   });
+})
+
+.controller('ActiveVisitsCtrl', function($scope) {
+  $scope.visits = [];
 })
 
 .controller('DashboardCtrl', function($scope) {

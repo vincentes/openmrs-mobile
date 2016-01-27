@@ -1,6 +1,6 @@
 angular.module('openmrs.services', [])
 
-.service('RestService', function() {
+.service('CallService', function() {
   var prefix = 'http://';
 
   this.call = function(host, endpoint, opts, handle) {
@@ -16,7 +16,7 @@ angular.module('openmrs.services', [])
           if(opts['password']) {
             xhr.setRequestHeader('Authorization', 'Basic ' + btoa(opts['username'] + ':' + opts['password']));
           } else {
-            throw "[RestService:call] Missing argument: 'password'.";
+            throw "[CallService:call] Missing argument: 'password'.";
           }
         } 
         else {
@@ -39,22 +39,25 @@ angular.module('openmrs.services', [])
     });
   }
 
+})
+
+.service('ApiService', function(AuthService, CallService) {
+  patient = [];
+
   this.authenticate = function(host, username, password, handle) {
-    this.call(host, 'session', {'username' : username, 'password' : password}, function(res) {
+    CallService.call(host, 'session', {'username' : username, 'password' : password}, function(res) {
       handle(res);
     });
   };
 
   this.verifyApi = function(host, handle) {
-    this.call(host, 'session', {}, function(res) {
+    CallService.call(host, 'session', {}, function(res) {
       handle(res.passed);
     });
   }
-})
 
-.service('SearchService', function(AuthService, RestService) {
   this.patients = function(query, handle) {
-    RestService.call(AuthService.getHost(), 'patient?q=' + query + '&v=default', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword()}, 
+    CallService.call(AuthService.getHost(), 'patient?q=' + query + '&v=default', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword()}, 
       function(res) {
         handle(res.results);
     });
@@ -62,20 +65,18 @@ angular.module('openmrs.services', [])
 
   // Buggy. Does not return ALL patients.
   this.patientsAll = function(handle) {
-    RestService.call(AuthService.getHost(), 'patient?lastviewed&v=full', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword(), 'cache' : true}, 
+    CallService.call(AuthService.getHost(), 'patient?lastviewed&v=full', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword(), 'cache' : true}, 
       function(res) {
         handle(res.results);
     });
   }
-})
 
-.service('PatientService', function(AuthService, RestService) {
-  patient = [];
   this.getPatient = function(uuid, handle) { 
-    return RestService.call(AuthService.getHost(), 'patient/' + uuid + '?v=full', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword()}, function(res) {
+    return CallService.call(AuthService.getHost(), 'patient/' + uuid + '?v=full', {'username' : AuthService.getUsername(), 'password' : AuthService.getPassword()}, function(res) {
       handle(res);
     });
   }
+
 })
 
 .service('TranslationService', function($translate, AuthService) {
