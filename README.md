@@ -1,5 +1,5 @@
-# OpenMRS-Mobile
-The is the repository for the *universal* OpenMRS Mobile app. The objective of this project is to make OpenMRS available to all mobile platforms using a single codebase to reduce maintainence time and increase efficiency and consistency. You can clone this repository and build it to Android, iOS, and Windows Phone.
+# openmrs-mobile
+This is the repository for the *universal* OpenMRS Mobile app. The objective of this project is to make OpenMRS available to all mobile platforms using a single codebase to reduce maintainence time and increase efficiency and consistency. You can clone this repository and build it to Android, iOS, and Windows Phone.
 
 # Features
 - Search and view patients

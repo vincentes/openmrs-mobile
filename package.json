@@ -1,7 +1,9 @@
 {
-  "name": "fixing",
+  "name": "openmrs-mobile",
   "version": "1.1.1",
-  "description": "fixing: An Ionic project",
+  "description": "OpenMRS for all mobile platforms.",
+  "repository": "https://github.com/vincentes/openmrs-mobile",
+  "license": "Mozilla Public License Version 2.0",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
