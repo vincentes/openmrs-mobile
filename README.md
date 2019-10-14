@@ -79,7 +79,7 @@ Add iOS platform support to the project:
 
     $ ionic platform add ios
     
-Build the app
+Build the app:
 
     $ ionic build ios
     
